@@ -28,7 +28,7 @@ Vue.component('vdg-cell', {
         //console.log('cell', this.rowData);
         return {
             //Must put this in the computed section, because .rowData will change after sorting the grid...
-            //    wrappedData: this.rowData.wrapped,
+            //  wrappedData: this.rowData.wrapped,
             cellKey: this.column.key,
             dataType: this.column.type || String,
             isEditable: this.column.editable,
@@ -120,8 +120,8 @@ Vue.component('vdg-grid', {
         });
         //Let our callee keep track of changes in the grid:
         //Event naming:
-        //    https://github.com/vuejs/vue/issues/4044
-        //    https://github.com/vuejs/vue/issues/5186
+        //  https://github.com/vuejs/vue/issues/4044
+        //  https://github.com/vuejs/vue/issues/5186
         this.$emit('wrapped_rows', wrappedRows);
         
         return {

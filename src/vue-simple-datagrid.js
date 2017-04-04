@@ -42,7 +42,7 @@ Vue.component('vdg-cell', {
     methods: {
         changed: function(key) {
             this.rowData.dirty = true;
-			console.log('dirty', key, JSON.stringify(this.wrappedData));
+			//console.log('dirty', key, JSON.stringify(this.wrappedData));
         },
     }
 });
@@ -156,17 +156,17 @@ Vue.component('vdg-grid', {
                 });
             //}
             if (sortKey) {
-				console.log('Sorting', rows.map(r => r.wrapped.medl_nr).join(','));
+				//console.log('Sorting', rows.map(function(r) { return r.wrapped.medl_nr; }).join(','));
                 rows = rows.slice();
 				rows.sort(function(a, b) {
                     var aa = a.wrapped[sortKey],
 						bb = b.wrapped[sortKey],
 						sorted = (aa === bb ? 0 : aa > bb ? 1 : -1) * order;
 
-					console.log('Comparing', aa, bb, sorted);
+					//console.log('Comparing', aa, bb, sorted);
 					return sorted;
                 });
-				console.log('Sorted ', rows.map(r => r.wrapped.medl_nr).join(','));
+				//console.log('Sorted ', rows.map(function(r) { return r.wrapped.medl_nr; }).join(','));
             }
 
             //console.log('filtered', (rows).map(JSON.stringify).join('\n'));

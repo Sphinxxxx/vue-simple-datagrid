@@ -4,9 +4,11 @@ Vue.component('vdg-cell', {
     template:
         '<div>' +
         '    <template v-if="dataType === URL">' +
-        '      <a :href="wrappedData[cellKey]" >{{ column.caption }}</a>' +
+        '      <a :href="wrappedData[cellKey]" >{{ cellContent }}</a>' +
         '    </template>' +
         '    <template v-else-if="dataType === Boolean">' +
+        //The <input>s need to bind to wrappedData[cellKey] (instead of cellContent),
+        //or else the two-way binding won't change the data on user input..
         '      <input v-model="wrappedData[cellKey]" v-on:change="changed(cellKey)" type="checkbox" v-bind:disabled="!isEditable" />' +
         '    </template>' +
         '    <template v-else-if="isEditable && dataType === Number">' +
@@ -16,7 +18,7 @@ Vue.component('vdg-cell', {
         '      <input v-model="wrappedData[cellKey]" v-on:change="changed(cellKey)" />' +
         '    </template>' +
         '    <template v-else>' +
-        '      <span>{{ wrappedData[cellKey] }}</span>' +
+        '      <span>{{ cellContent }}</span>' +
         '    </template>' +
         '</div>',
 
@@ -37,7 +39,14 @@ Vue.component('vdg-cell', {
     computed: {
         wrappedData: function() {
             return this.rowData.wrapped;
-        }
+        },
+        cellContent: function() {
+            var data = this.wrappedData[this.cellKey];
+            if(this.column.format) {
+                data = this.column.format(data);
+            }
+            return data;
+        },
     },
     methods: {
         changed: function(key) {
@@ -88,7 +97,7 @@ Vue.component('vdg-grid', {
 
         '        <td v-for="col in columns" :class="col.key" >' +
         '          <vdg-cell :rowData="row"' +
-        '                       :column="col" >' +
+        '                    :column="col" >' +
         '          </vdg-cell>' +
         '        </td>' +
 

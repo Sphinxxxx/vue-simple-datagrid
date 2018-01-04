@@ -194,8 +194,8 @@ Vue.component('vdg-grid', {
             if (sortKey) {
                 rows = rows.slice();
                 rows.sort(function(a, b) {
-                    var aa = a.wrapped[sortKey],
-                        bb = b.wrapped[sortKey],
+                    var aa = a.wrapped[sortKey] || '',
+                        bb = b.wrapped[sortKey] || '',
                         sorted = (aa === bb ? 0 : aa > bb ? 1 : -1) * order;
                     return sorted;
                 });

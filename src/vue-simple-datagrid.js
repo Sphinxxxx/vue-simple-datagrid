@@ -66,6 +66,7 @@ Vue.component('vdg-grid', {
         '    </ul>' +
         '  </div>' +
 
+        '  <div class="vdg-table">' +
         '  <table>' +
         '    <thead>' +
         '      <tr>' +
@@ -101,6 +102,8 @@ Vue.component('vdg-grid', {
         '      </tr>' +
         '    </tbody>' +
         '  </table>' +
+        '  </div>' +
+
         '</div>',
 
     props: {
